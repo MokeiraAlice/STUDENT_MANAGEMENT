@@ -1,0 +1,182 @@
+
+
+<div class="container mt-10">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4"> 
+      <div class="upload-card">
+        <div class="card-header text-center">
+          <h2 class="mb-2">STUDENTS UPLOAD PORTAL</h2>
+        </div>
+        
+        <div class="card-body col-8">
+          <div class="file-upload-container" 
+               [class.has-file]="fileName" 
+               [class.dragging]="isDragging" 
+               (dragover)="onDragOver($event)" 
+               (dragleave)="onDragLeave($event)" 
+               (drop)="onDrop($event)">
+            <div class="upload-icon">
+              <i class="fas fa-cloud-upload-alt"></i>
+            </div>
+            <div class="upload-text">
+              <span *ngIf="!fileName">Drag &amp; Drop your file here or  </span>
+              <span *ngIf="fileName">Selected file: <strong>{{ fileName }}</strong></span>
+              <label class="browse-button" for="fileInput">
+                Browse Files
+              </label>
+              <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
+            </div>
+          </div>
+          
+          <div class="file-details" *ngIf="selectedFile">
+            <div class="file-info">
+              <span class="file-name">{{ fileName }}</span>
+              <span class="file-size">{{ formatFileSize(selectedFile.size) }}</span>
+            </div>
+            <div class="progress-container" *ngIf="uploadProgress > 0 && uploadProgress < 100">
+              <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-secondary" [disabled]="!selectedFile" (click)="resetForm()">Cancel</button>
+          <button class="btn btn-primary" [disabled]="!selectedFile" (click)="uploadFile()">
+            <span *ngIf="uploading"><i class="fas fa-spinner fa-spin"></i> Uploading...</span>
+            <span *ngIf="!uploading">Upload File</span>
+          </button>
+        </div>
+
+        <div class="alert alert-success" *ngIf="uploadSuccess">
+          <i class="fas fa-check-circle"></i> File uploaded successfully!
+        </div>
+        
+        <div class="alert alert-danger" *ngIf="uploadError">
+          <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <div class="upload-card">
+      <div class="card-header">
+        <h2>File Upload Portal</h2>
+        <p class="subtitle">Upload your documents securely</p>
+      </div>
+      
+      <div class="card-body">
+        <div class="file-upload-container" 
+             [class.has-file]="fileName" 
+             [class.dragging]="isDragging" 
+             (dragover)="onDragOver($event)" 
+             (dragleave)="onDragLeave($event)" 
+             (drop)="onDrop($event)">
+          <div class="upload-icon">
+            <i class="fas fa-cloud-upload-alt"></i>
+          </div>
+          <div class="upload-text">
+            <span *ngIf="!fileName">Drag &amp; Drop your file here or</span>
+            <span *ngIf="fileName">Selected file: <strong>{{ fileName }}</strong></span>
+            <label class="browse-button" for="fileInput">
+              Browse Files
+            </label>
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" style="display: none;">
+          </div>
+        </div>
+        
+        <div class="file-details" *ngIf="selectedFile">
+          <div class="file-info">
+            <span class="file-name">{{ fileName }}</span>
+            <span class="file-size">{{ formatFileSize(selectedFile.size) }}</span>
+          </div>
+          <div class="progress-container" *ngIf="uploadProgress > 0 && uploadProgress < 100">
+            <div class="progress-bar" [style.width.%]="uploadProgress"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="fileDescription">File Description</label>
+          <input type="text" id="fileDescription" class="form-control" [(ngModel)]="fileDescription" placeholder="Enter a description for your file">
+        </div>
+        
+        <div class="form-group">
+          <label for="fileCategory">Category</label>
+          <select id="fileCategory" class="form-control" [(ngModel)]="fileCategory">
+            <option value="">Select a category</option>
+            <option value="DOCUMENT">Document</option>
+            <option value="IMAGE">Image</option>
+            <option value="SPREADSHEET">Spreadsheet</option>
+            <option value="PRESENTATION">Presentation</option>
+            <option value="OTHER">Other</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="card-footer">
+        <button class="btn btn-secondary" [disabled]="!selectedFile" (click)="resetForm()">Cancel</button>
+        <button class="btn btn-primary" [disabled]="!selectedFile || !fileDescription || !fileCategory" (click)="uploadFile()">
+          <span *ngIf="uploading"><i class="fas fa-spinner fa-spin"></i> Uploading...</span>
+          <span *ngIf="!uploading">Upload File</span>
+        </button>
+      </div>
+      
+      <div class="alert alert-success" *ngIf="uploadSuccess">
+        <i class="fas fa-check-circle"></i> File uploaded successfully!
+      </div>
+      
+      <div class="alert alert-danger" *ngIf="uploadError">
+        <i class="fas fa-exclamation-triangle"></i> {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+ -->
